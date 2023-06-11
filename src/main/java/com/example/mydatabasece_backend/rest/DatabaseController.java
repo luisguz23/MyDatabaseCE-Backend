@@ -24,6 +24,7 @@ public class DatabaseController {
     @PostMapping("/users")
     public String addUser(@RequestBody User user) {
         if (user != null) {
+            user.compressPassword(); // Aplicar compresión Huffman al password
             userRepository.save(user);
             return "Datos de usuario recibidos correctamente";
         } else {
