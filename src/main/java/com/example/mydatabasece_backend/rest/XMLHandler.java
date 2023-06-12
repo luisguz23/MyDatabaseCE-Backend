@@ -1,5 +1,6 @@
 package com.example.mydatabasece_backend.rest;
 
+import javax.sound.midi.Soundbank;
 import java.util.ResourceBundle;
 
 public class XMLHandler {
@@ -83,19 +84,97 @@ public class XMLHandler {
             Repuesta.setMatrixName(innerjoin);
             return Repuesta;
 
-
-
-
         } else if (Mensaje[0].equals("Update")) {
             System.out.println("Entro en Update");
+            String NombreTabla=Mensaje[2];
+            String[] Condiciones=new String[4];
+            int k=0;
+            for(int i=3;i< Mensaje.length;i++){
+                if(Mensaje[i].equals("Where")  ){
+                    System.out.println("Se a;ade el 2 hacia adelante del where");
+                    Condiciones[k]=Mensaje[i+2];
+                    k++;
+                } else if (Mensaje[i].equals("Values")) {
+                    System.out.println("se a;adio el el valor actual");
+                    Condiciones[k]=Mensaje[i+2];
+                    k++;
+                } else if (Mensaje[i].equals("por"))  {
+                    System.out.println("se a;adio el el valor nuevo");
+                    Condiciones[k]=Mensaje[i+1];
+                }
+            }
+            System.out.println("NombreDeLaTabla: "+NombreTabla);
+            System.out.println("ColumnName: "+Condiciones[0]);
+            System.out.println("currentValue: "+Condiciones[1]);
+            System.out.println("newValue: "+Condiciones[2]);
+            String[][] Matriz3=XMLedit.editElement(XMLreader.readXML(NombreTabla),Condiciones[0],Condiciones[1],Condiciones[2],NombreTabla);
+            Repuesta.setMatrixName(NombreTabla);
+            Repuesta.setMatrix(Matriz3);
+            return Repuesta;
 
         } else if (Mensaje[0].equals("Delete")) {
             System.out.println("Entro en Delete");
 
-        }else if (Mensaje[0].equals("Insert")){
-            System.out.println("Insert");
+            String NombreTabla=Mensaje[2];
+            String[] Condiciones=new String[4];
+            int k=0;
+            if (Mensaje.length<=3){
+                System.out.println("las instrucciones no tiene where,se elimino la carpeta y el XML");
+                Repuesta.setMatrixName(NombreTabla);
+                Repuesta.setMatrix(XMLdelete.llenarMatrizConNulls(XMLreader.readXML(NombreTabla),NombreTabla));
+                //Aqui va el led
+                return Repuesta;
+            }
+            for(int i=3;i< Mensaje.length;i++){
+                if(Mensaje[i].equals("Where")  ){
+                    System.out.println("Se a;ade el 2 hacia adelante del where");
+                    Condiciones[k]=Mensaje[i+2];k++;
+                } else if (Mensaje[i].equals("Value")) {
+                    System.out.println("se a;adio el siguente del Value");
+                    Condiciones[k]=Mensaje[i+2];
+                    k++;
+                }else if(Mensaje[i].equals("all")){
+                    EliminarCarpeta.EliminarTodo(NombreTabla);
+                    Repuesta.setMatrixName("Se elimino por completo la tabla: "+NombreTabla);
+                    //Aqui va el led
+                    return Repuesta;
 
+                }
+            }
+            System.out.println("Where: "+Condiciones[0]);
+            System.out.println("Value: "+Condiciones[1]);
+            String[][] Matriz3=XMLdelete.eliminarDato(XMLreader.readXML(NombreTabla),Condiciones[0],Condiciones[1],NombreTabla);
+            Repuesta.setMatrixName(NombreTabla);
+            Repuesta.setMatrix(Matriz3);
+            //Aqui va el led
+            return Repuesta;
+
+
+        }else if (Mensaje[0].equals("Insert")) {
+            System.out.println("Insert");
+            String NombreTabla = Mensaje[2];
+            String[] Condiciones = new String[4];
+            int k = 0;
+            for (int i = 3; i < Mensaje.length; i++) {
+                if (Mensaje[i].equals("Where")) {
+                    System.out.println("Se a;ade el 2 hacia adelante del where");
+                    Condiciones[k] = Mensaje[i + 2];
+                    k++;
+                } else if (Mensaje[i].equals("Values")) {
+                    System.out.println("se a;adio el el valor actual");
+                    Condiciones[k] = Mensaje[i + 2];
+                    k++;
+                }
+
+
+            }
+            return Repuesta;
+        }else if (Mensaje[0].equals("Reinicio")){
+            TablaEjemplos.Creartablas();
+        }else if (Mensaje[0].equals("EliminarTodo")){
+            TablaEjemplos.Creartablas();
         }
+
 
 
 
@@ -110,8 +189,9 @@ public class XMLHandler {
 // Select maximo tres condiciones para la busqueda, usando AND o OR LISTO--
 //Innerjoin entre dos XML Store y Select maximo tres condiciones para la busqueda, usando AND o OR LISTO--
 //Insert Insertar datos a un XML Store, uno o varios un solo script
-//Delete WhereEliminar todas las intancias de un XMLStore
-//Delete Eliminar ciertas insntacias de un XMLStore
-//Delete all Eliminar la carpeta y el XMLStore
-//update Actualizar una instancia de un XML Store
-//update actuizasr un conjunto especifico de instancias en un XML Store
+//Delete Where Eliminar todas las intancias de un XMLStore
+//Delete Eliminar ciertas insntacias de un XMLStore LISTO--
+//Delete all Eliminar la carpeta y el XMLStore LISTO--
+//update Actualizar una instancia de un XML Store LISTO--
+//update actuizasr un conjunto especifico de instancias en un XML Store LISTO--
+//Los Updates actualizan todos los datos con el valor que se le da por el otro
