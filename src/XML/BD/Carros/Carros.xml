@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<row>
+		<ID>1</ID>
+		<Marca>Toyota</Marca>
+		<Modelo>Corolla</Modelo>
+		<Año>2018</Año>
+		<Color>Rojo</Color>
+		<Precio>null</Precio>
+	</row>
+	<row>
+		<ID>2</ID>
+		<Marca>Honda</Marca>
+		<Modelo>Civic</Modelo>
+		<Año>2019</Año>
+		<Color>Negro</Color>
+		<Precio>18000</Precio>
+	</row>
+	<row>
+		<ID>3</ID>
+		<Marca>Ford</Marca>
+		<Modelo>Focus</Modelo>
+		<Año>2017</Año>
+		<Color>null</Color>
+		<Precio>12000</Precio>
+	</row>
+	<row>
+		<ID>4</ID>
+		<Marca>Chevrolet</Marca>
+		<Modelo>Cruze</Modelo>
+		<Año>2020</Año>
+		<Color>null</Color>
+		<Precio>16000</Precio>
+	</row>
+	<row>
+		<ID>5</ID>
+		<Marca>Nissan</Marca>
+		<Modelo>null</Modelo>
+		<Año>2016</Año>
+		<Color>Azul</Color>
+		<Precio>13000</Precio>
+	</row>
+</data>

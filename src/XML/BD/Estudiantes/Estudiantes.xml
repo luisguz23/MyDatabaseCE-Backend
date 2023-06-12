@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<row>
+		<ID>3322</ID>
+		<Nombre>Carlos</Nombre>
+		<Edad>null</Edad>
+		<Carrera>Computadores</Carrera>
+		<Curso>Datos</Curso>
+	</row>
+	<row>
+		<ID>1024</ID>
+		<Nombre>Felipe</Nombre>
+		<Edad>20</Edad>
+		<Carrera>Industrial</Carrera>
+		<Curso>Calculo</Curso>
+	</row>
+	<row>
+		<ID>3052</ID>
+		<Nombre>Juan</Nombre>
+		<Edad>22</Edad>
+		<Carrera>Electronica</Carrera>
+		<Curso>Fisica</Curso>
+	</row>
+	<row>
+		<ID>2060</ID>
+		<Nombre>Jose</Nombre>
+		<Edad>25</Edad>
+		<Carrera>Computadores</Carrera>
+		<Curso>Calculo</Curso>
+	</row>
+</data>
