@@ -10,6 +10,9 @@ import java.util.List;
  * Controlador para gestionar las operaciones relacionadas con la base de datos de usuarios.
  */
 @RestController
+/**
+ * Controla la base de datos de los usuarios
+ */
 public class DatabaseController {
 
     private final UserRepository userRepository;

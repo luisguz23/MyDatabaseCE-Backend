@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 /**
- * Controlador para manejar las solicitudes de inicio de sesión.
+ * Controla el login
  */
 @RestController
 public class LoginController {
@@ -71,7 +71,7 @@ public class LoginController {
             response.setMessage("Login Success");
             //Buzzer
             SerialCommunication.enviarDato("3");
-
+            System.out.println(copia);
             if (password.equals(copia)){
                 System.out.println(copia);
                 System.out.println("Si es la contra");

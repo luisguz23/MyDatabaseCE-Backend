@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.example.mydatabasece_backend"},{"l":"com.example.mydatabasece_backend.ConexionArduino"},{"l":"com.example.mydatabasece_backend.Entity"},{"l":"com.example.mydatabasece_backend.Huffman"},{"l":"com.example.mydatabasece_backend.Repo"},{"l":"com.example.mydatabasece_backend.rest"}];updateSearchResults();

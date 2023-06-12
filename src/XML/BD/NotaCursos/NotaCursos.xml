@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data>
 	<row>
-		<Nota>80</Nota>
-		<Estado>Aprobada</Estado>
-		<Profesor>Marcos</Profesor>
-	</row>
-	<row>
-		<Nota>50</Nota>
-		<Estado>Reprobada</Estado>
-		<Profesor>Diego</Profesor>
+		<Nota>null</Nota>
+		<Estado>null</Estado>
+		<Profesor>null</Profesor>
 	</row>
 	<row>
 		<Nota>null</Nota>
-		<Estado>Pendiente</Estado>
-		<Profesor>Luis</Profesor>
+		<Estado>null</Estado>
+		<Profesor>null</Profesor>
 	</row>
 	<row>
 		<Nota>null</Nota>
-		<Estado>Incompleta</Estado>
-		<Profesor>Gerardo</Profesor>
+		<Estado>null</Estado>
+		<Profesor>null</Profesor>
+	</row>
+	<row>
+		<Nota>null</Nota>
+		<Estado>null</Estado>
+		<Profesor>null</Profesor>
 	</row>
 </data>
