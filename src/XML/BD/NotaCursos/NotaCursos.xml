@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<row>
+		<Nota>80</Nota>
+		<Estado>Aprobada</Estado>
+		<Profesor>Marcos</Profesor>
+	</row>
+	<row>
+		<Nota>50</Nota>
+		<Estado>Reprobada</Estado>
+		<Profesor>Diego</Profesor>
+	</row>
+	<row>
+		<Nota>null</Nota>
+		<Estado>Pendiente</Estado>
+		<Profesor>Luis</Profesor>
+	</row>
+	<row>
+		<Nota>null</Nota>
+		<Estado>Incompleta</Estado>
+		<Profesor>Gerardo</Profesor>
+	</row>
+</data>
