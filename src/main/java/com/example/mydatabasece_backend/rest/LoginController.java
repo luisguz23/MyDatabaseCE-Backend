@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 import java.util.logging.Logger;
 
+/**
+ * Controla el login
+ */
 @RestController
 public class LoginController {
 
@@ -57,6 +60,7 @@ public class LoginController {
             response.setMessage("Login Success");
             //Buzzer
             SerialCommunication.enviarDato("3");
+            System.out.println(copia);
 
             if (password.equals(copia)){
                 System.out.println(copia);

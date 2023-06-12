@@ -6,7 +6,9 @@ import jakarta.persistence.*;
 
 import java.util.Map;
 
-
+/**
+ * Crea la tabla en la base de datos para el login
+ */
 @Entity
 @Table(name = "users")
 public class User {
@@ -27,6 +29,11 @@ public class User {
         // Constructor vacío requerido por JPA
     }
 
+    /**
+     * Mete la contra comprimida en la base de datos
+     * @param newPassword
+     * @return
+     */
     public String updatePassword(String newPassword) {
 
         // Calcular la frecuencia de los caracteres en el texto original
@@ -43,6 +50,12 @@ public class User {
         return newPassword;
     }
 
+    /**
+     * Constructor
+     * @param username dato que se envia
+     * @param email dato que se envia
+     * @param password dato que se envia
+     */
     public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
@@ -83,6 +96,9 @@ public class User {
         this.password = password;
     }
 
+    /**
+     * Llama al huffman
+     */
     public void compressPassword() {
         Map<Character, Integer> frequencyMap = HuffmanCompression.calculateFrequencyMap(password);
         HuffmanNode root = HuffmanCompression.buildHuffmanTree(frequencyMap);

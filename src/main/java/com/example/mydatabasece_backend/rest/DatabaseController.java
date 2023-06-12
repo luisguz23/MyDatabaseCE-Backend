@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+/**
+ * Controla la base de datos de los usuarios
+ */
 public class DatabaseController {
 
     private final UserRepository userRepository;

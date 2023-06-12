@@ -1,0 +1,6 @@
+com.example.mydatabasece_backend
+com.example.mydatabasece_backend.ConexionArduino
+com.example.mydatabasece_backend.Entity
+com.example.mydatabasece_backend.Huffman
+com.example.mydatabasece_backend.Repo
+com.example.mydatabasece_backend.rest

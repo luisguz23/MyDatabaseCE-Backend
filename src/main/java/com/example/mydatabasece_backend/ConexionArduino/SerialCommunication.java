@@ -1,6 +1,10 @@
 package com.example.mydatabasece_backend.ConexionArduino;
 import com.fazecast.jSerialComm.*;
 
+
+/**
+ * Clase que se encarga de la comunicacion serial del arduino
+ */
 public class SerialCommunication {
 
     private static SerialPort serialPort;
@@ -14,11 +18,15 @@ public class SerialCommunication {
         }
     }
 
+    /**
+     * Lee el arduino, es decir el morse
+     * @return un string que es la contra
+     */
     public static String lectorArduino() {
-        // Obtén una instancia de la librería jSerialComm
-        serialPort = SerialPort.getCommPort("COM3"); // Reemplaza "COM3" con el puerto serial correcto
 
-        // Configura los parámetros de la conexión serial (baud rate, bits de datos, paridad, etc.)
+        serialPort = SerialPort.getCommPort("COM3");
+
+        // Configura los parámetros de la conexión serial
         serialPort.setComPortParameters(9600, 8, 1, SerialPort.NO_PARITY);
 
         // Abre el puerto serial
@@ -35,43 +43,41 @@ public class SerialCommunication {
                         break;
                     }
 
-                    // Verifica si hay datos disponibles para leer
                     if (serialPort.bytesAvailable() > 0) {
                         // Lee los datos del puerto serial
                         byte[] buffer = new byte[serialPort.bytesAvailable()];
                         int numRead = serialPort.readBytes(buffer, buffer.length);
 
-                        // Convierte los datos leídos en una cadena de texto
+
                         String data = new String(buffer, 0, numRead);
 
-                        // Concatena el string recibido al string acumulado
+
                         concatenatedString.append(data);
                         contraseña = String.valueOf(getConcatenatedString());
                     }
                 }
             });
 
-            // Inicia el hilo de recepción de datos
+            // Inicia el hilo de recepción
             thread.start();
 
-            // Espera a que el hilo termine antes de continuar
+            // Espera al hilo
             try {
                 thread.join();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
-            // Detiene el hilo de recepción de datos si aún está en ejecución
+
             if (thread.isAlive()) {
                 thread.interrupt();
             }
 
-            // Cierra el puerto serial
             serialPort.closePort();
 
             System.out.println("Puerto serial cerrado.");
 
-            // Devuelve la contraseña obtenida
+
 
             return contraseña;
         } else {
@@ -81,11 +87,14 @@ public class SerialCommunication {
         return null;
     }
 
+    /**
+     * Enviar un dato de lectura al arduino
+     * @param dato envia un valor de 1, 2 o 3 que enciende diferentes cosas en el arduino
+     */
     public static void enviarDato(String dato) {
 
-        serialPort = SerialPort.getCommPort("COM3"); // Reemplaza "COM3" con el puerto serial correcto
+        serialPort = SerialPort.getCommPort("COM3");
 
-        // Configura los parámetros de la conexión serial (baud rate, bits de datos, paridad, etc.)
         serialPort.setComPortParameters(9600, 8, 1, SerialPort.NO_PARITY);
         // Abre el puerto serial si no está abierto
         if (!serialPort.isOpen()) {
@@ -102,7 +111,6 @@ public class SerialCommunication {
             }
         }
 
-        // Envía el dato al Arduino
         String comando = dato;
         byte[] data = comando.getBytes();
         serialPort.writeBytes(data, data.length);
@@ -112,9 +120,7 @@ public class SerialCommunication {
 
     }
     static String contraseña = "";
-       /* public static void encenderLuz() {
-                enviarArduino("1");
-        }*/
+
 }
 
 
