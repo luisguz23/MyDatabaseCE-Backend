@@ -1,5 +1,7 @@
 package com.example.mydatabasece_backend.rest;
 
+import com.example.mydatabasece_backend.ConexionArduino.SerialCommunication;
+
 import javax.sound.midi.Soundbank;
 import java.util.ResourceBundle;
 
@@ -123,6 +125,7 @@ public class XMLHandler {
                 Repuesta.setMatrixName(NombreTabla);
                 Repuesta.setMatrix(XMLdelete.llenarMatrizConNulls(XMLreader.readXML(NombreTabla),NombreTabla));
                 //Aqui va el led
+                SerialCommunication.enviarDato("2");
                 return Repuesta;
             }
             for(int i=3;i< Mensaje.length;i++){
@@ -137,6 +140,7 @@ public class XMLHandler {
                     EliminarCarpeta.EliminarTodo(NombreTabla);
                     Repuesta.setMatrixName("Se elimino por completo la tabla: "+NombreTabla);
                     //Aqui va el led
+                    SerialCommunication.enviarDato("2");
                     return Repuesta;
 
                 }
@@ -147,27 +151,32 @@ public class XMLHandler {
             Repuesta.setMatrixName(NombreTabla);
             Repuesta.setMatrix(Matriz3);
             //Aqui va el led
+            SerialCommunication.enviarDato("2");
             return Repuesta;
 
 
         }else if (Mensaje[0].equals("Insert")) {
             System.out.println("Insert");
             String NombreTabla = Mensaje[2];
-            String[] Condiciones = new String[4];
-            int k = 0;
-            for (int i = 3; i < Mensaje.length; i++) {
-                if (Mensaje[i].equals("Where")) {
+            String[] Condiciones=new String[4];
+            int k=0;
+            for(int i=3;i< Mensaje.length;i++){
+                if(Mensaje[i].equals("Where")  ){
                     System.out.println("Se a;ade el 2 hacia adelante del where");
-                    Condiciones[k] = Mensaje[i + 2];
+                    Condiciones[k]=Mensaje[i+2];
                     k++;
-                } else if (Mensaje[i].equals("Values")) {
+                } else if (Mensaje[i].equals("Value")) {
                     System.out.println("se a;adio el el valor actual");
-                    Condiciones[k] = Mensaje[i + 2];
+                    Condiciones[k]=Mensaje[i+2];
                     k++;
                 }
-
-
             }
+            System.out.println("NombreTabla: "+NombreTabla);
+            System.out.println("Where: "+Condiciones[0]);
+            System.out.println("Value: "+Condiciones[1]);
+            String[][] Matriz3=XMLedit.setDato(XMLreader.readXML(NombreTabla),Condiciones[0],Condiciones[1]);
+            Repuesta.setMatrixName(NombreTabla);
+            Repuesta.setMatrix(Matriz3);
             return Repuesta;
         }else if (Mensaje[0].equals("Reinicio")){
             TablaEjemplos.Creartablas();

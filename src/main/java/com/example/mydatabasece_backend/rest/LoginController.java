@@ -1,5 +1,6 @@
 package com.example.mydatabasece_backend.rest;
 
+import com.example.mydatabasece_backend.ConexionArduino.SerialCommunication;
 import com.example.mydatabasece_backend.Entity.User;
 import com.example.mydatabasece_backend.Huffman.HuffmanCompression;
 import com.example.mydatabasece_backend.Huffman.HuffmanNode;
@@ -53,7 +54,11 @@ public class LoginController {
 
         if (user != null && compressedPassword.equals(user.getPassword())) {
             response.setMessage("Login Success");
+            //Buzzer
+            SerialCommunication.enviarDato("3");
         } else {
+            //Led
+            SerialCommunication.enviarDato("2");
             response.setMessage("User does not exist or invalid password");
         }
 
