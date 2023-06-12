@@ -1,9 +1,5 @@
 package com.example.mydatabasece_backend.rest;
 
-import com.example.mydatabasece_backend.Entity.User;
-import com.example.mydatabasece_backend.Huffman.HuffmanCompression;
-import com.example.mydatabasece_backend.Huffman.HuffmanNode;
-import com.example.mydatabasece_backend.Repo.UserRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,53 +9,51 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Map;
 import java.util.logging.Logger;
 
 @RestController
 public class LoginController {
-
-    private final UserRepository userRepository;
-
-    @Autowired
-    public LoginController(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
     @PostMapping("/login")
-    public ResponseEntity<MyResponse> receiveDataFromAngular(@RequestBody MyData data) {
-        Logger logger = Logger.getLogger(LoginController.class.getName());
-        String name = data.getName();
+    public ResponseEntity<String> receiveDataFromAngular(@RequestBody MyData data) {
+        // Obtener los valores del objeto MyData y guardarlos en variables separadas
+        String name = data.getNombre();
+
         String password = data.getPassword();
 
-        // Calcular la frecuencia de los caracteres en el texto original
-        Map<Character, Integer> frequencyMap = HuffmanCompression.calculateFrequencyMap(password);
+        // Realizar cualquier otra lógica necesaria con los datos
 
-        // Construir el árbol de Huffman utilizando la frecuencia de los caracteres
-        HuffmanNode root = HuffmanCompression.buildHuffmanTree(frequencyMap);
-
-        // Comprimir el password utilizando HuffmanCompression
-        String compressedPassword = HuffmanCompression.compress(password, root);
-
-        // Obtener el usuario de la base de datos
-        User user = userRepository.findByUsername(name);
 
         MyResponse response = new MyResponse();
         response.setMessage("Datos recibidos correctamente en Spring");
-        logger.info("Recibiendo datos de Angular: nombre=" + data.getName() + ", contraseña=" + data.getPassword());
 
-        System.out.println(name);
-        System.out.println(compressedPassword);
 
-        if (user != null && compressedPassword.equals(user.getPassword())) {
-            response.setMessage("Login Success");
-        } else {
-            response.setMessage("User does not exist or invalid password");
+        // Convertir la respuesta a una cadena de texto
+        ObjectMapper mapper = new ObjectMapper();
+        String responseString;
+        try {
+            responseString = mapper.writeValueAsString(response);
+        } catch (JsonProcessingException e) {
+            // Manejar el error en caso de que no se pueda convertir a JSON
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        // Devolver la respuesta
-        return ResponseEntity.ok(response);
+        // Imprimir los datos recibidos en la consola
+        Logger logger = Logger.getLogger(getClass().getName());
+        logger.info("Nombre: " + name);
+        logger.info("Contraseña: " + password);
+        logger.info("---------------------------");
+
+        /*if ("Luis".equals(name) && "password".equals(password)){
+            response.setMessage("Login Success");
+        }
+        else { response.setMessage("User does not exist");}
+*/
+        // Devolver la respuesta como una cadena de texto
+        return ResponseEntity.ok(responseString);
+
+
     }
+
 
     public static class MyData {
         private String name;
@@ -67,11 +61,11 @@ public class LoginController {
 
         // Getters y setters
 
-        public String getName() {
+        public String getNombre() {
             return name;
         }
 
-        public void setName(String name) {
+        public void setNombre(String name) {
             this.name = name;
         }
 
@@ -97,4 +91,6 @@ public class LoginController {
             this.message = message;
         }
     }
+
+
 }
