@@ -1,7 +1,6 @@
-package com.example.mydatabasece_backend.Huffman;
-
 
  public class HuffmanNode implements Comparable<HuffmanNode> {
+
     char character;
     int frequency;
     HuffmanNode left;
@@ -28,4 +27,3 @@ package com.example.mydatabasece_backend.Huffman;
         return this.frequency - other.frequency;
     }
 }
-

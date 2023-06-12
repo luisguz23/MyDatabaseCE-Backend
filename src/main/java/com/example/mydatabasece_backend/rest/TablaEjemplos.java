@@ -46,6 +46,9 @@ public class TablaEjemplos {
 
 
 public static void main(String[] args){
+
+}
+public static void Creartablas(){
     XMLWriter.writeXML(Datos,"Estudiantes");
     XMLWriter.writeXML(Carros,"Carros");
     XMLWriter.writeXML(Clientes,"Clientes");

@@ -1,10 +1,14 @@
 package com.example.mydatabasece_backend.rest;
 
+import java.util.Arrays;
+
 public class XMLdelete {
     public static void main(String[] args) {
 
     }
-    public static void eliminarDato(String[][] matriz, String nombreColumna, String valorBusqueda,String filePath) {
+    public static String[][] eliminarDato(String[][] matriz, String nombreColumna, String valorBusqueda, String NombreArchivo) {
+        String rutaProyecto = System.getProperty("user.dir");
+        String filePath = rutaProyecto + "/src/XML/BD/"+ NombreArchivo+"/"+ NombreArchivo+".xml";
         int numRows = matriz.length;
         int numCols = matriz[0].length;
 
@@ -25,14 +29,15 @@ public class XMLdelete {
                 if (matriz[i][columna].equals(valorBusqueda)) {
                     matriz[i][columna] = null;
                     System.out.println("Se ha eliminado el dato correctamente.");
-                    XMLWriter.writeXML(matriz, filePath);
-                    return;
+                    XMLWriter.writeXML(matriz, NombreArchivo);
+                    return matriz;
                 }
             }
             System.out.println("No se encontró el valor especificado en la matriz.");
         } else {
             System.out.println("No se encontró la columna especificada en la matriz.");
         }
+        return matriz;
     }
 
     public static void eliminarDatos(String[][] matriz, String nombreColumna, String valorBusqueda,String filePath) {
@@ -71,6 +76,24 @@ public class XMLdelete {
             System.out.println("No se encontró la columna especificada en la matriz.");
         }
     }
+    public static String[][] llenarMatrizConNulls(String[][] matriz, String NombreArchivo) {
+        int numRows = matriz.length;
+        int numCols = matriz[0].length;
+
+        // Llenar la matriz con nulls excepto la primera fila
+        for (int i = 1; i < numRows; i++) {
+            Arrays.fill(matriz[i], null); // Llenar la fila con nulls
+        }
+
+        // Guardar la matriz actualizada en el archivo XML
+        XMLWriter.writeXML(matriz, NombreArchivo);
+        System.out.println("La matriz se ha llenado con nulls, excepto la primera fila con los datos intactos.");
+        return matriz;
+
+
+    }
+
+
 
 
 }

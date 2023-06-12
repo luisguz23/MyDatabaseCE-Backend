@@ -6,14 +6,15 @@ public class XMLedit {
         String NombreArchivo="Estudiantes";
         // Especifica la ruta y el nombre del archivo XML que deseas crear
         String rutaProyecto = System.getProperty("user.dir");
-        String nombreArchivo=NombreArchivo;
         CrearCarpeta.crearCarpeta(NombreArchivo);
         String filePath = rutaProyecto + "/src/XML/BD/"+ NombreArchivo+"/"+ NombreArchivo+".xml";
         String[][] Datos= XMLreader.readXML(filePath);
         editElement(Datos, "Curso", "Datos", "Calculo", filePath);
     }
 
-    public static void editElement(String[][] data, String columnName, String currentValue, String newValue, String filePath) {
+    public static String[][] editElement(String[][] data, String columnName, String currentValue, String newValue, String NombreArchivo) {
+        String rutaProyecto = System.getProperty("user.dir");
+        String filePath = rutaProyecto + "/src/XML/BD/"+ NombreArchivo+"/"+ NombreArchivo+".xml";
         int columnIndex = -1;
         String[] headers = data[0];
 
@@ -27,7 +28,7 @@ public class XMLedit {
 
         if (columnIndex == -1) {
             System.out.println("La columna especificada no existe.");
-            return;
+            return data;
         }
 
         // Buscar el elemento en la columna y realizar el cambio
@@ -37,7 +38,8 @@ public class XMLedit {
             }
         }
 
-       XMLWriter.writeXML(data, filePath);
+       XMLWriter.writeXML(data, NombreArchivo);
+        return data;
     }
 
     //Para colocar un dato donde haya un null que seria la manera que tiene el programa para poner los espacios donde no hay datos
