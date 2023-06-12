@@ -2,10 +2,16 @@ package com.example.mydatabasece_backend.rest;
 
 import java.io.File;
 
+
 public class CrearCarpeta {
     public static void main(String[] args) {
 
     }
+    /**
+     * Crea una carpeta en la ruta especificada.
+     *
+     * @param nombreCarpeta El nombre de la carpeta a crear.
+     */
     public static void crearCarpeta(String nombreCarpeta){
         // Obtén la ruta del directorio actual del proyecto
         String rutaProyecto = System.getProperty("user.dir");

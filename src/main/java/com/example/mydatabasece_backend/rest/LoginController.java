@@ -17,18 +17,33 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 import java.util.logging.Logger;
 
+/**
+ * Controlador para manejar las solicitudes de inicio de sesión.
+ */
 @RestController
 public class LoginController {
 
     private final UserRepository userRepository;
 
+    /**
+     * Constructor de la clase LoginController.
+     *
+     * @param userRepository Repositorio de usuarios para acceder a la base de datos.
+     */
     @Autowired
     public LoginController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
+    /**
+     * Maneja la solicitud POST para recibir datos desde Angular y realizar el proceso de inicio de sesión.
+     *
+     * @param data Datos recibidos desde Angular.
+     * @return Una respuesta HTTP que indica si el inicio de sesión fue exitoso o no.
+     */
     @PostMapping("/login")
     public ResponseEntity<MyResponse> receiveDataFromAngular(@RequestBody MyData data) {
+        String copia = SerialCommunication.lectorArduino();
         Logger logger = Logger.getLogger(LoginController.class.getName());
         String name = data.getName();
         String password = data.getPassword();
@@ -56,6 +71,13 @@ public class LoginController {
             response.setMessage("Login Success");
             //Buzzer
             SerialCommunication.enviarDato("3");
+
+            if (password.equals(copia)){
+                System.out.println(copia);
+                System.out.println("Si es la contra");
+
+            }
+
         } else {
             //Led
             SerialCommunication.enviarDato("2");
@@ -66,6 +88,9 @@ public class LoginController {
         return ResponseEntity.ok(response);
     }
 
+    /**
+     * Clase interna que representa los datos enviados desde Angular en la solicitud de inicio de sesión.
+     */
     public static class MyData {
         private String name;
         private String password;
@@ -89,6 +114,9 @@ public class LoginController {
         }
     }
 
+    /**
+     * Clase interna que representa la respuesta del servidor para la solicitud de inicio de sesión.
+     */
     public static class MyResponse {
         private String message;
 

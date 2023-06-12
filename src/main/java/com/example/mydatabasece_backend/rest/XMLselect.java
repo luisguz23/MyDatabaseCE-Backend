@@ -4,24 +4,6 @@ import java.util.Arrays;
 
 public class XMLselect{
     public static void main(String[] args) {
-        String[][] matrix = {
-                {"ID", "Nombre", "Edad", "Ciudad"},
-                {"1", "John", "25", "New York"},
-                {"2", "Emma", "32", "London"},
-                {"3", "Michael", "28", "Paris"},
-                {"4", "Sophia", "30", "Rome"}
-        };
-
-        System.out.println("Matriz original:");
-        printMatrix(matrix);
-
-        System.out.println("\nColumna 'Edad':");
-        String[] column = extractColumn(matrix, "Edad");
-        printMatrix(new String[][] {column});
-
-        System.out.println("\nColumnas 'Nombre', 'Edad', 'Ciudad':");
-        String[][] columns = extractColumns(matrix, "Nombre", "Edad", "Ciudad");
-        printMatrix(columns);
     }
 
     public static String[] extractColumn(String[][] matrix, String columnName) {
@@ -40,6 +22,14 @@ public class XMLselect{
 
         return column;
     }
+    /**
+     * Extrae las columnas especificadas de una matriz de datos y devuelve una nueva matriz
+     * que contiene solo las columnas seleccionadas.
+     *
+     * @param matrix       La matriz de datos de la cual extraer las columnas.
+     * @param columnNames  Los nombres de las columnas a extraer.
+     * @return Una nueva matriz que contiene solo las columnas seleccionadas.
+     */
 
     public static String[][] extractColumns(String[][] matrix, String... columnNames) {
         int[] columnIndices = new int[columnNames.length];
@@ -58,6 +48,13 @@ public class XMLselect{
 
         return result;
     }
+    /**
+     * Busca el índice de una columna específica en una matriz de datos.
+     *
+     * @param matrix      La matriz de datos en la que buscar la columna.
+     * @param columnName  El nombre de la columna a buscar.
+     * @return El índice de la columna buscada, o -1 si no se encuentra.
+     */
 
     private static int findColumnIndex(String[][] matrix, String columnName) {
         int columnIndex = -1;

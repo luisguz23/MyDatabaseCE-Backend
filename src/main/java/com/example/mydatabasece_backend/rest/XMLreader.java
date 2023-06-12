@@ -14,14 +14,14 @@ import java.util.Map;
 
 public class XMLreader {
     public static void main(String[] args) {
-        String nombreArchivo = "Estudiantes";
-        //String rutaProyecto = System.getProperty("user.dir");
-        //String filePath = rutaProyecto + "/src/" + nombreArchivo + "/" + nombreArchivo + ".xml";
-        readXML("NotaCursos");
-        Map<String, String> map = new HashMap<>();
-        map.put("key1", "value1");
-        map.put("key2", "value2");
+
     }
+    /**
+     * Lee un archivo XML y devuelve los datos contenidos en forma de matriz bidimensional.
+     *
+     * @param nombreArchivo El nombre del archivo XML a leer.
+     * @return Una matriz bidimensional que contiene los datos del archivo XML.
+     */
 
     public static String[][] readXML(String nombreArchivo) {
         try {

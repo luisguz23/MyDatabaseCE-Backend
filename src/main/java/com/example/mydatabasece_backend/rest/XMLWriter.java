@@ -6,27 +6,15 @@ import java.io.IOException;
 
 public class XMLWriter {
     public static void main(String[] args) {
-        /*
-        String[][] Datos = {
-                {"ID", "Nombre", "Edad", "Carrera", "Curso"},
-                {"3322", "Carlos", "24", "Computadores", "Datos"},
-                {"1024", "Felipe", "20", "Industrial", "Calculo"},
-                {"3052", "Juan", "22", "Electronica", "Fisica"},
-                {"2060", "Jose", "25", "Computadores", "Calculo"}
-        };
-        String NombreArchivo="Estudiantes";
-        // Especifica la ruta y el nombre del archivo XML que deseas crear
-        String rutaProyecto = System.getProperty("user.dir");
-        String nombreArchivo=NombreArchivo;
-        CrearCarpeta.crearCarpeta(NombreArchivo);
-        String filePath = rutaProyecto + "/src/"+ NombreArchivo+"/"+ NombreArchivo+".xml";
 
-       // String filePath = "ruta/del/archivo/datos.xml"; // Cambiar la ruta y el nombre del archivo según sea necesario
-        writeXML(Datos, filePath);
-
-         */
     }
 
+    /**
+     * Escribe los datos proporcionados en un archivo XML.
+     *
+     * @param data          Los datos a escribir en el archivo XML. La matriz debe tener una fila de encabezado y los datos correspondientes.
+     * @param NombreArchivo El nombre del archivo XML a crear.
+     */
     public static void writeXML(String[][] data, String NombreArchivo) {
         try {
             // Especifica la ruta y el nombre del archivo XML que deseas crear
