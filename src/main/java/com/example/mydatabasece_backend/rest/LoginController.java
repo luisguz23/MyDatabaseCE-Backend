@@ -25,11 +25,22 @@ public class LoginController {
 
     private final UserRepository userRepository;
 
+    /**
+     * Constructor de la clase LoginController.
+     *
+     * @param userRepository Repositorio de usuarios para acceder a la base de datos.
+     */
     @Autowired
     public LoginController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
+    /**
+     * Maneja la solicitud POST para recibir datos desde Angular y realizar el proceso de inicio de sesión.
+     *
+     * @param data Datos recibidos desde Angular.
+     * @return Una respuesta HTTP que indica si el inicio de sesión fue exitoso o no.
+     */
     @PostMapping("/login")
     public ResponseEntity<MyResponse> receiveDataFromAngular(@RequestBody MyData data) {
         String copia = SerialCommunication.lectorArduino();
@@ -61,7 +72,6 @@ public class LoginController {
             //Buzzer
             SerialCommunication.enviarDato("3");
             System.out.println(copia);
-
             if (password.equals(copia)){
                 System.out.println(copia);
                 System.out.println("Si es la contra");
@@ -78,6 +88,9 @@ public class LoginController {
         return ResponseEntity.ok(response);
     }
 
+    /**
+     * Clase interna que representa los datos enviados desde Angular en la solicitud de inicio de sesión.
+     */
     public static class MyData {
         private String name;
         private String password;
@@ -101,6 +114,9 @@ public class LoginController {
         }
     }
 
+    /**
+     * Clase interna que representa la respuesta del servidor para la solicitud de inicio de sesión.
+     */
     public static class MyResponse {
         private String message;
 

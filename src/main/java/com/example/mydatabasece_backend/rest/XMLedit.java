@@ -12,6 +12,18 @@ public class XMLedit {
         editElement(Datos, "Curso", "Datos", "Calculo", filePath);
     }
 
+    /**
+     * Edita un elemento en la matriz de datos.
+     * Busca el elemento en la columna especificada y lo cambia por el nuevo valor.
+     * Devuelve la matriz actualizada.
+     *
+     * @param data la matriz de datos que se va a actualizar
+     * @param columnName el nombre de la columna en la que se va a buscar el elemento
+     * @param currentValue el valor actual del elemento que se va a cambiar
+     * @param newValue el nuevo valor que se va a establecer para el elemento
+     * @param NombreArchivo el nombre del archivo XML que contiene la matriz
+     * @return la matriz actualizada con el elemento editado
+     */
     public static String[][] editElement(String[][] data, String columnName, String currentValue, String newValue, String NombreArchivo) {
         String rutaProyecto = System.getProperty("user.dir");
         String filePath = rutaProyecto + "/src/XML/BD/"+ NombreArchivo+"/"+ NombreArchivo+".xml";
@@ -38,10 +50,19 @@ public class XMLedit {
             }
         }
 
-       XMLWriter.writeXML(data, NombreArchivo);
+       //XMLWriter.writeXML(data, NombreArchivo);
         return data;
     }
 
+    /**
+     * Establece el nuevo dato en las celdas nulas de la columna especificada en la matriz.
+     * Devuelve la matriz actualizada.
+     *
+     * @param matriz la matriz que se va a actualizar
+     * @param nombreColumna el nombre de la columna en la que se va a establecer el nuevo dato
+     * @param nuevoDato el nuevo dato que se va a establecer en las celdas nulas
+     * @return la matriz actualizada con el nuevo dato establecido
+     */
     public static String[][] setDato(String[][] matriz, String nombreColumna, String nuevoDato) {
         int numRows = matriz.length;
         int numCols = matriz[0].length;

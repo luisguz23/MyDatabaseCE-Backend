@@ -25,6 +25,11 @@ public class EliminarCarpeta {
         }
     }
 
+    /**
+     * Elimina una carpeta y todo su contenido, incluyendo archivos y subdirectorios.
+     *
+     * @param nombreCarpeta El nombre de la carpeta a eliminar.
+     */
     public static void EliminarTodo(String nombreCarpeta){
         // Obtén la ruta del directorio actual del proyecto
         String rutaProyecto = System.getProperty("user.dir");
@@ -47,6 +52,11 @@ public class EliminarCarpeta {
         }
     }
 
+    /**
+     * Elimina una carpeta y todo su contenido, incluyendo archivos y subdirectorios, de forma recursiva.
+     *
+     * @param carpeta La carpeta a eliminar.
+     */
     private static void EliminarCarpetaFull(File carpeta) {
         // Obtiene la lista de archivos y subdirectorios dentro de la carpeta
         File[] archivos = carpeta.listFiles();
