@@ -89,4 +89,3 @@ public class User {
         String compressedPassword = HuffmanCompression.compress(password, root);
         password = compressedPassword;
     }
-}

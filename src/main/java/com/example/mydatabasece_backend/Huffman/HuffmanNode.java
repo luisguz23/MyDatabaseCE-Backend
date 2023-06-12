@@ -1,7 +1,6 @@
-package com.example.mydatabasece_backend.Huffman;
 
+ public class HuffmanNode implements Comparable<HuffmanNode> {
 
-public class HuffmanNode implements Comparable<HuffmanNode> {
     char character;
     int frequency;
     HuffmanNode left;
