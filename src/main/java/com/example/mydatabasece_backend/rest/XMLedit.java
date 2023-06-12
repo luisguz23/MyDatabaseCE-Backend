@@ -42,15 +42,13 @@ public class XMLedit {
         return data;
     }
 
-    //Para colocar un dato donde haya un null que seria la manera que tiene el programa para poner los espacios donde no hay datos
-    public static void setDato(String[][] matriz, String nombreColumna, String valorPrimeraFila, String nuevoValor) {
+    public static String[][] setDato(String[][] matriz, String nombreColumna, String nuevoDato) {
         int numRows = matriz.length;
         int numCols = matriz[0].length;
 
         int columna = -1; // Índice de la columna
-        int primeraFila = -1; // Índice de la primera fila
 
-        // Buscar el índice de la columna y la primera fila
+        // Buscar el índice de la columna
         for (int j = 0; j < numCols; j++) {
             if (matriz[0][j].equals(nombreColumna)) {
                 columna = j;
@@ -58,29 +56,22 @@ public class XMLedit {
             }
         }
 
-        for (int i = 1; i < numRows; i++) {
-            if (matriz[i][0].equals(valorPrimeraFila)) {
-                primeraFila = i;
-                break;
+        // Verificar si se encontró la columna
+        if (columna != -1) {
+            // Recorrer las filas (excluyendo la primera fila) y reemplazar los valores nulos
+            for (int i = 1; i < numRows; i++) {
+                if (matriz[i][columna].equals("null")) {
+                    matriz[i][columna] = nuevoDato;
+                }
             }
-        }
-
-        // Verificar si la ubicación ya tiene un valor
-        if (columna != -1 && primeraFila != -1) {
-            if (matriz[primeraFila][columna] != null) {
-                System.out.println("No se puede establecer el valor. La ubicación ya contiene un dato.");
-                return;
-            }
-        }
-
-        // Establecer el nuevo valor en la ubicación
-        if (columna != -1 && primeraFila != -1) {
-            matriz[primeraFila][columna] = nuevoValor;
-            System.out.println("Se ha establecido el valor correctamente.");
+            System.out.println("Se han establecido los datos correctamente en la columna " + nombreColumna + ".");
         } else {
-            System.out.println("No se encontró la ubicación especificada en la matriz.");
+            System.out.println("No se encontró la columna especificada en la matriz.");
         }
+
+        return matriz;
     }
+
 
 
 }
