@@ -125,7 +125,7 @@ public class XMLHandler {
                 Repuesta.setMatrixName(NombreTabla);
                 Repuesta.setMatrix(XMLdelete.llenarMatrizConNulls(XMLreader.readXML(NombreTabla),NombreTabla));
                 //Aqui va el led
-                SerialCommunication.enviarDato("2");
+                SerialCommunication.enviarDato("1");
                 return Repuesta;
             }
             for(int i=3;i< Mensaje.length;i++){

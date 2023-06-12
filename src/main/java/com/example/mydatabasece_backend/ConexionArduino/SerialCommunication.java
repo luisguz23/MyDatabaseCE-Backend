@@ -107,6 +107,9 @@ public class SerialCommunication {
         byte[] data = comando.getBytes();
         serialPort.writeBytes(data, data.length);
         System.out.println("Dato enviado: " + dato);
+        serialPort.closePort();
+        System.out.println("Puerto serial cerrado");
+
     }
     static String contraseña = "";
        /* public static void encenderLuz() {

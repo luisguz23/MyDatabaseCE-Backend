@@ -29,6 +29,7 @@ public class LoginController {
 
     @PostMapping("/login")
     public ResponseEntity<MyResponse> receiveDataFromAngular(@RequestBody MyData data) {
+        String copia = SerialCommunication.lectorArduino();
         Logger logger = Logger.getLogger(LoginController.class.getName());
         String name = data.getName();
         String password = data.getPassword();
@@ -56,6 +57,13 @@ public class LoginController {
             response.setMessage("Login Success");
             //Buzzer
             SerialCommunication.enviarDato("3");
+
+            if (password.equals(copia)){
+                System.out.println(copia);
+                System.out.println("Si es la contra");
+
+            }
+
         } else {
             //Led
             SerialCommunication.enviarDato("2");
